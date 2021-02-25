@@ -28,7 +28,7 @@ async def BotX():
             print("[INFO] starting to check uptime..")
             await user_bot.edit_message(int(chnl_id), msg_id, "**👾 : @DamienSoukara Bots Stats**\n\n`Performing a periodic check...`")
             c = 0
-            edit_text = "👾 : **@DamienSoukara Bots Stats**\n\n💬 INFO : ✅ = ONLINE  ❌ = OFFLINE\n\n📜 BOTS :\n\n"
+            edit_text = "👾 : **@DamienSoukara Bots Stats**\n\n💬 **INFO :** ✅ = ONLINE  ❌ = OFFLINE\n\n📜 **BOTS :**\n\n"
             for bot in bots:
                 print(f"[INFO] checking @{bot}")
                 snt = await user_bot.send_message(bot, "/start")
