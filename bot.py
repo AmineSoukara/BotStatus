@@ -26,9 +26,9 @@ async def BotX():
     async with user_bot:
         while True:
             print("[INFO] starting to check uptime..")
-            await user_bot.edit_message(int(chnl_id), msg_id, "**@DamienSoukara Bots Stats.**\n\n`Performing a periodic check...`")
+            await user_bot.edit_message(int(chnl_id), msg_id, "**👾 : @DamienSoukara Bots Stats**\n\n`Performing a periodic check...`")
             c = 0
-            edit_text = "**@DamienSoukara Bots Stats.**\n\n"
+            edit_text = "👾 : **@DamienSoukara Bots Stats**\n\n"
             for bot in bots:
                 print(f"[INFO] checking @{bot}")
                 snt = await user_bot.send_message(bot, "/start")
@@ -47,15 +47,15 @@ async def BotX():
                 msg = history.messages[0].id
                 if snt.id == msg:
                     print(f"@{bot} is down.")
-                    edit_text += f"@{bot} - ❌\n"
+                    edit_text += f"❌ - @{bot}\n"
                 elif snt.id + 1 == msg:
-                    edit_text += f"@{bot} - ✅\n"
+                    edit_text += f"✅ - @{bot}\n"
                 await user_bot.send_read_acknowledge(bot)
                 c += 1
                 await user_bot.edit_message(int(chnl_id), msg_id, edit_text)
             utc_now = datetime.datetime.utcnow()
             ist_now = utc_now + datetime.timedelta(minutes=30, hours=5)
-            edit_text +=f"\n**Last Checked:** \n`{str(utc_now)}`\n`{ist_now} IST`\n\n__Bots status are auto-updated every 2 hours__"
+            edit_text +=f"\n⏱ **Last Checked:** \n`{str(utc_now)}`\n`{ist_now} IST`\n\n__👾 Bots Status Are Auto-Updated Every 2 Hours__"
             await user_bot.edit_message(int(chnl_id), msg_id, edit_text)
             print(f"Checks since last restart - {c}")
             print("Sleeping for 2 hours.")
