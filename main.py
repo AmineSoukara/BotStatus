@@ -4,6 +4,7 @@ import os
 import time
 import datetime
 import pyrogram
+import pytz
 
 try:
     import secrets
@@ -72,9 +73,11 @@ def main():
 
                 client.read_history(bot)
 
-            utc_now = datetime.datetime.utcnow()
+            utc_now = datetime.datetime.now(pytz.timezone('UTC')).strftime("%d/%m/%y %I:%M:%S %p")
 
-            edit_text += f"\n🌍 <b>LAST UPDATE :</b>\n{str(utc_now)} UTC"
+            ma_now = datetime.datetime.now(pytz.timezone('Africa/Casablanca')).strftime("%d/%m/%y %I:%M:%S %p")
+
+            edit_text += f"\n⏱ <b>LAST UPDATE :</b>\n🌍 UTC : {str(utc_now)}\n🇲🇦 MA : {str(ma_now)}"
 
             client.edit_message_text(
                 UPDATE_CHANNEL,
