@@ -77,7 +77,7 @@ def main():
 
             ma_now = datetime.datetime.now(pytz.timezone('Africa/Casablanca')).strftime("%d/%m/%y %I:%M:%S %p")
 
-            edit_text += f"\n⏱ <b>LAST UPDATE :</b>\n🌍 UTC : {str(utc_now)}\n🇲🇦 MA : {str(ma_now)}"
+            edit_text += f"\n⏱ <b>LAST UPDATE :</b>\n🌎 UTC : {str(utc_now)}\n🇲🇦 MA : {str(ma_now)}"
 
             client.edit_message_text(
                 UPDATE_CHANNEL,
