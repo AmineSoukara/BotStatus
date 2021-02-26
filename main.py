@@ -1,3 +1,5 @@
+# (C) @DamienSoukara 
+
 import os
 import time
 import datetime
@@ -52,7 +54,7 @@ client = pyrogram.Client(
 def main():
     with client:
         while True:
-            edit_text = "<b>👾 @DamienSoukara Our Bot's Status (Updating Every 2 Hours)</b>\n\n📜 BOTS :\n\n"
+            edit_text = "<b>👾 @DamienSoukara Our Bot's Status (Updating Every 2 Hours)</b>\n\n<b>📜 BOTS :</b>\n\n"
 
             for bot in BOTS:
                 snt = client.send_message(bot, "/start")
