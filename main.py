@@ -63,13 +63,13 @@ def main():
                 msg = client.get_history(bot, 1)[0]
 
                 if snt.message_id == msg.message_id:
-                    edit_text += f"❌ - @{bot} : DOWN\n"
+                    edit_text += f"❌ - @{bot}\n"
                     client.send_message(
                         BOT_OWNER,
                         f"❌ - @{bot} IS DOWN !"
                     )
                 else:
-                    edit_text += f"✅ - @{bot} : UP\n"
+                    edit_text += f"✅ - @{bot}\n"
 
                 client.read_history(bot)
 
@@ -77,7 +77,7 @@ def main():
 
             ma_now = datetime.datetime.now(pytz.timezone('Africa/Casablanca')).strftime("%d/%m/%y %I:%M:%S %p")
 
-            edit_text += f"\n⏱ <b>LAST UPDATE :</b>\n🌎 UTC : {str(utc_now)}\n🇲🇦 MA : {str(ma_now)}"
+            edit_text += f"\n⏱ <b>LAST UPDATE :</b>\n\n🌎 UTC : {str(utc_now)}\n🇲🇦 MA : {str(ma_now)}"
 
             client.edit_message_text(
                 UPDATE_CHANNEL,
