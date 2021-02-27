@@ -1,4 +1,5 @@
 # BotStatus
-Updates your bot status in the message, every two hours.
+Updates Your Bot Status, Every Two Hours.
 
-Heavily inspired by [this.](https://github.com/odysseusmax/bug-free-broccoli) (telethon version of that xD)
+● [Pyrogram Version](https://github.com/AmineSoukara/BotStatus/tree/Pyrogram)
+● [Telethon Version](https://github.com/AmineSoukara/BotStatus/tree/Telethon)
