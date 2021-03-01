@@ -55,7 +55,7 @@ client = pyrogram.Client(
 def main():
     with client:
         while True:
-            edit_text = "<b>👾 @DamienSoukara Our Bot's Status (Updating Every 2 Hours)</b>\n\n<b>📜 BOTS :</b>\n\n"
+            edit_text = "<b>👾 @DamienSoukara Our Bot's Status (Updating Every 12 Hours)</b>\n\n<b>📜 BOTS :</b>\n\n"
 
             for bot in BOTS:
                 snt = client.send_message(bot, "/start")
@@ -84,7 +84,7 @@ def main():
                 SATUS_MESSAGE_MESSAGE_ID,
                 edit_text
             )
-            time.sleep(120 * 60)
+            time.sleep(720 * 60)
 
 
 main()
