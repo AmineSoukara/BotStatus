@@ -1,5 +1,5 @@
 # 🤖 BotStatus
-Updates Your Bot Status, Every Two Hours.
+Updates Your Bot Status, Every {} Hours.
 
 ● [Pyrogram Version](https://github.com/AmineSoukara/BotStatus/tree/Pyrogram)
 ● [Telethon Version](https://github.com/AmineSoukara/BotStatus/tree/Telethon)
