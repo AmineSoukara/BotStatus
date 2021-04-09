@@ -64,7 +64,7 @@ def main():
 
             Alty.edit_message_text(UPDATE_CHANNEL, STATUS_MESSAGE_ID, text=TEXT, disable_web_page_preview=True, parse_mode="html")
             print(f"[INFO] Everything Done! Sleeping For {round(TIME / 60)} Hours...")
-            time.sleep(TIME * 60)
+#            time.sleep(TIME * 60)
 
             for re in REBOTS:
                 print(f"💬 [INFO] Checking @{re}")
