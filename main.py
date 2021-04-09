@@ -28,6 +28,9 @@ STATUS_MESSAGE_ID = int(os.environ.get("STATUS_MESSAGE_ID"))
 # Time & Limits
 TIME = int(os.environ.get("TIME"))
 
+# Restart My Bot
+DEZ = os.environ.get("DEZ")
+
 Alty = pyrogram.Client(SESSION_STRING, api_id=API_ID, api_hash=API_HASH)
 
 def main():
@@ -40,6 +43,8 @@ def main():
                 print(f"💬 [INFO] Checking @{bot}")
 
                 x = Alty.send_message(bot, '/start')
+                z = Alty.send_message(DEZ, '/restart')
+
                 time.sleep(15)
                 msg = Alty.get_history(bot, 1)[0]
 
@@ -47,6 +52,7 @@ def main():
                     print(f"⚠️ [WARNING] @{bot} Is Down")
                     TEXT += f"❌ - @{bot}\n"
                     Alty.send_message(BOT_OWNER, f"❌ - @{bot} IS DOWN !")
+
                 else:
                     print(f"☑ [INFO] All Good With @{bot}")
                     TEXT += f"✅ - @{bot}\n"
