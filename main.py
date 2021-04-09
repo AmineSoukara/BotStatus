@@ -62,9 +62,7 @@ def main():
 
             TEXT += f"\n⏱ <b>LAST UPDATE :</b>\n\n🌎 UTC : {str(utc_now)}\n🇲🇦 MA : {str(ma_now)}"
 
-            Alty.edit_message_text(UPDATE_CHANNEL, STATUS_MESSAGE_ID, text=TEXT, disable_web_page_preview=True, parse_mode="html")
-            print(f"[INFO] Everything Done! Sleeping For {round(TIME / 60)} Hours...")
-#            time.sleep(TIME * 60)
+
 
             for re in REBOTS:
                 print(f"💬 [INFO] Checking @{re}")
@@ -75,15 +73,18 @@ def main():
                 msg = Alty.get_history(re, 1)[0]
 
                 if x.message_id == msg.message_id:
-                    print(f"⚠️ [WARNING] @{re} Is Down")
+                    print(f"⛔ [WARNING] I Can't Restart @{re}")
                     TEXT += f"❌ - @{re}\n"
-                    Alty.send_message(BOT_OWNER, f"❌ - @{re} IS DOWN !")
+                    Alty.send_message(BOT_OWNER, f"⛔ - I Can't Restart @{re} !")
 
                 else:
-                    print(f"☑ [INFO] All Good With @{re}")
-                    Alty.send_message(BOT_OWNER, f"✅ - @{re} #RESTART !")
+                    print(f"✅ [INFO] Restarted @{re}")
+                    Alty.send_message(BOT_OWNER, f"✅ - @{re} #RESTARTED #DONE !")
 
-                Alty.read_history(bot)
+                Alty.read_history(re)
+
+            Alty.edit_message_text(UPDATE_CHANNEL, STATUS_MESSAGE_ID, text=TEXT, disable_web_page_preview=True, parse_mode="html")
+            print(f"[INFO] Everything Done! Sleeping For {round(TIME / 60)} Hours...")
             time.sleep(TIME * 60)
 
 main()
