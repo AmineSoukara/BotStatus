@@ -29,7 +29,7 @@ STATUS_MESSAGE_ID = int(os.environ.get("STATUS_MESSAGE_ID"))
 TIME = int(os.environ.get("TIME"))
 
 # Restart My Bot
-DEZ = os.environ.get("DEZ")
+REBOTS = [i.strip() for i in os.environ.get("DEZ").split(' ')]
 
 Alty = pyrogram.Client(SESSION_STRING, api_id=API_ID, api_hash=API_HASH)
 
@@ -43,7 +43,6 @@ def main():
                 print(f"💬 [INFO] Checking @{bot}")
 
                 x = Alty.send_message(bot, '/start')
-                z = Alty.send_message(DEZ, '/restart')
 
                 time.sleep(15)
                 msg = Alty.get_history(bot, 1)[0]
@@ -67,5 +66,24 @@ def main():
             print(f"[INFO] Everything Done! Sleeping For {round(TIME / 60)} Hours...")
             time.sleep(TIME * 60)
 
+            for re in REBOTS:
+                print(f"💬 [INFO] Checking @{re}")
+
+                x = Alty.send_message(re, '/restart')
+
+                time.sleep(15)
+                msg = Alty.get_history(re, 1)[0]
+
+                if x.message_id == msg.message_id:
+                    print(f"⚠️ [WARNING] @{re} Is Down")
+                    TEXT += f"❌ - @{re}\n"
+                    Alty.send_message(BOT_OWNER, f"❌ - @{re} IS DOWN !")
+
+                else:
+                    print(f"☑ [INFO] All Good With @{re}")
+                    Alty.send_message(BOT_OWNER, f"✅ - @{re} #RESTART !")
+
+                Alty.read_history(bot)
+            time.sleep(TIME * 60)
 
 main()
