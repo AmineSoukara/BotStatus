@@ -44,7 +44,7 @@ def main():
                     Alty.send_message(ID, txt)
                 except Exception as e:
                     print(e)
-
+                    Alty.send_message(ID, e)
 
 #            time.sleep(TIME * 60)
 
