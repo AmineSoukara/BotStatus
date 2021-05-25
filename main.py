@@ -40,7 +40,7 @@ def main():
             app = server.app(HEROKU_APP_NAME)
             for line in app.stream_log(lines=1):
                 try:
-                    txt = line.decode("utf-8")
+                    txt = "➕ " + line.decode("utf-8")
                     Alty.send_message(ID, txt)
                 except Exception as e:
                     print(e)
