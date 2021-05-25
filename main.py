@@ -30,9 +30,9 @@ def main():
     with Alty:
         while True:
             try:
-                print("💬 [INFO] Starting To Stream Logs..")
-                TEXT = "💬 [INFO] Starting To Stream Logs.."
-                Alty.send_message(ID, TEXT)
+                t = "💬 [INFO] Starting To Stream Logs.."
+                print(t)
+                Alty.send_message(ID, t)
             except Exception as e:
                 print(e)
 
