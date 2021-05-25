@@ -5,61 +5,44 @@ import time
 import datetime
 import pytz
 import pyrogram
+import heroku3
+from pyrogram import Client, filters
+from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
 # Api Strings From my.telegram.org
 API_ID = int(os.environ.get("API_ID"))
 API_HASH = os.environ.get("API_HASH")
-
-# Your Session Strings
-SESSION_STRING = os.environ.get("SESSION_STRING")
-
-# Your Bots Username Without '@' With A Space 1 To Another
-BOTS = [i.strip() for i in os.environ.get("BOTS").split(' ')]
+BOT_TOKEN = os.environ.get("BOT_TOKEN")
 
 # Your Username Without '@'
 BOT_OWNER = os.environ.get("BOT_OWNER")
+OWNER_ID = int(853393439)
 
-# Your Channel Username Without '@'
-UPDATE_CHANNEL = os.environ.get("UPDATE_CHANNEL")
-
-# Message Id Of Your Channel Bot Status Message
-STATUS_MESSAGE_ID = int(os.environ.get("STATUS_MESSAGE_ID"))
+HEROKU_API_KEY = "f14e4b11-d32f-4631-b150-6fb5afa2c859"
+HEROKU_APP_NAME = "dzrobot"
 
 # Time & Limits
 TIME = int(os.environ.get("TIME"))
 
-Alty = pyrogram.Client(SESSION_STRING, api_id=API_ID, api_hash=API_HASH)
+Alty = Client(
+        "Alty-Logs",
+        bot_token=BOT_TOKEN,
+        api_id=API_ID,
+        api_hash=API_HASH
+    )
 
 def main():
     with Alty:
         while True:
-            print("💬 [INFO] Starting To Check Uptime..")
-            TEXT = f"<b>👾 @{UPDATE_CHANNEL} Our Bot's Status (Updating Every  {round(TIME / 60)} Hours)</b>\n\n<b>📜 BOTS :</b>\n\n"
+            print("💬 [INFO] Starting To Stream Logs..")
+            TEXT = "💬 [INFO] Starting To Stream Logs.."
+            await Alty.send_message(OWNER_ID, TEXT)
+            server = heroku3.from_key(HEROKU_API_KEY)
+            app = server.app(HEROKU_APP_NAME)
+            for line in app.stream_log(lines=1):
+                await Alty.send_message(OWNER_ID, line)
 
-            for bot in BOTS:
-                print(f"💬 [INFO] Checking @{bot}")
-
-                x = Alty.send_message(bot, '/start')
-                time.sleep(15)
-                msg = Alty.get_history(bot, 1)[0]
-
-                if x.message_id == msg.message_id:
-                    print(f"⚠️ [WARNING] @{bot} Is Down")
-                    TEXT += f"❌ - @{bot}\n"
-                    Alty.send_message(BOT_OWNER, f"❌ - @{bot} IS DOWN !")
-                else:
-                    print(f"☑ [INFO] All Good With @{bot}")
-                    TEXT += f"✅ - @{bot}\n"
-                Alty.read_history(bot)
-
-            utc_now = datetime.datetime.now(pytz.timezone('UTC')).strftime("%I:%M %p %d/%m/%y")
-            ma_now = datetime.datetime.now(pytz.timezone('Africa/Casablanca')).strftime("%d/%m/%y %I:%M:%S %p")
-
-            TEXT += f"\n⏱ <b>LAST UPDATE :</b>\n\n🌎 UTC : {str(utc_now)}\n🇲🇦 MA : {str(ma_now)}"
-
-            Alty.edit_message_text(UPDATE_CHANNEL, STATUS_MESSAGE_ID, text=TEXT, disable_web_page_preview=True, parse_mode="html")
-            print(f"[INFO] Everything Done! Sleeping For {round(TIME / 60)} Hours...")
-            time.sleep(TIME * 60)
+#            time.sleep(TIME * 60)
 
 
 main()
