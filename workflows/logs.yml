@@ -1,0 +1,32 @@
+name: ⚡️ Update Status. ⚡️
+
+on:
+  schedule:
+    - cron: "0 */2 * * *"
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🐍 Set up Python 3.9 🐍
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.9
+      - name: 🌀 Clone The Repo 🌀
+        uses: actions/checkout@gh-wf
+        with:
+          repository: ${{ secrets.REPO_NAME }}
+      - name: 📀 Install Dependencies. 📀
+        run: |
+          pip install python-decouple tgcrypto pyrogram heroku3
+          pip install --upgrade pip
+      - name: 🏃‍♂️ Run The Bot. 🏃‍♂️
+        run: |
+          python3 main.py
+        env:
+          API_ID: ${{ secrets.API_ID }}
+          API_HASH: ${{ secrets.API_HASH }}
+          BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
+          ID: ${{ secrets.ID }}
+          HEROKU_APP_NAME: ${{ secrets.HEROKU_APP_NAME }}
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
