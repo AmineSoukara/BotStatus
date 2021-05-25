@@ -36,11 +36,11 @@ def main():
         while True:
             print("💬 [INFO] Starting To Stream Logs..")
             TEXT = "💬 [INFO] Starting To Stream Logs.."
-            await Alty.send_message(OWNER_ID, TEXT)
+            Alty.send_message(OWNER_ID, TEXT)
             server = heroku3.from_key(HEROKU_API_KEY)
             app = server.app(HEROKU_APP_NAME)
             for line in app.stream_log(lines=1):
-                await Alty.send_message(OWNER_ID, line)
+                Alty.send_message(OWNER_ID, line)
 
 #            time.sleep(TIME * 60)
 
