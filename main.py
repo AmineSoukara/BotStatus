@@ -1,7 +1,7 @@
 # (C) @DamienSoukara
 
 import os
-import re
+
 import heroku3
 import urllib3
 from pyrogram import Client
@@ -21,6 +21,7 @@ ID = int(os.environ.get("ID", 12345))
 
 HEROKU_APP_NAME = os.environ.get("HEROKU_APP_NAME", None)
 HEROKU_API_KEY = os.environ.get("HEROKU_API_KEY", None)
+ALL_APPS = bool(os.environ.get("ALL_APPS", False))
 
 
 Alty = Client("Alty-Logs", bot_token=BOT_TOKEN, api_id=API_ID, api_hash=API_HASH)
@@ -29,24 +30,30 @@ Alty = Client("Alty-Logs", bot_token=BOT_TOKEN, api_id=API_ID, api_hash=API_HASH
 def main():
     with Alty:
         while True:
-            try:
-                t = "💬 [INFO] Starting To Stream Logs.."
-                print(t)
-                Alty.send_message(ID, t)
-            except Exception as e:
-                print(e)
+            print("💬 [INFO] Starting To Stream Logs..")
+            TEXT = "💬 [INFO] Starting To Stream Logs.."
+            Alty.send_message(OWNER_ID, TEXT)
 
             server = heroku3.from_key(HEROKU_API_KEY)
             app = server.app(HEROKU_APP_NAME)
-            for line in app.stream_log(lines=1):
-                try:
+            apps = server.apps(order_by="name", sort="asc")
+
+            if ALL_APPS is True:
+                for ap in apps:
+                    allapp = server.app(ap.name)
+                    for line in allapp.stream_log(lines=1):
+                        try:
+                            txt = line.decode("utf-8")
+                            done = f"➕ #{ap.name}\n" + txt
+                            Alty.send_message(ID, done)
+                        except Exception as e:
+                            print(e)
+
+            elif ALL_APPS is False:
+                for line in app.stream_log(lines=1):
                     txt = line.decode("utf-8")
                     done = "➕ " + txt
                     Alty.send_message(ID, done)
-                except Exception as e:
-                    print(e)
-
-#            time.sleep(TIME * 60)
 
 
 main()
