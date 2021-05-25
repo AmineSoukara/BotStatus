@@ -49,7 +49,7 @@ def main():
                         except Exception as e:
                             print(e)
 
-            elif ALL_APPS is False:
+            if ALL_APPS is False:
                 for line in app.stream_log(lines=1):
                     txt = line.decode("utf-8")
                     done = "➕ " + txt
