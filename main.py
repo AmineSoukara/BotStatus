@@ -75,3 +75,4 @@ async def start(c, m):
 
 
 main()
+start()
