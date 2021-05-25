@@ -30,7 +30,7 @@ Alty = Client("Alty-Logs", bot_token=BOT_TOKEN, api_id=API_ID, api_hash=API_HASH
 def main():
     with Alty:
         while True:
-            t = "💬 [INFO] Starting To Stream Logs..")
+            t = "💬 [INFO] Starting To Stream Logs.."
             Alty.send_message(ID, t)
             print(t)
 
