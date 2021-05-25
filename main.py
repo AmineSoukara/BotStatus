@@ -5,22 +5,22 @@ import re
 import heroku3
 import urllib3
 from pyrogram import Client
-
+from decouple import config
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 # get a token from @BotFather
 BOT_TOKEN = os.environ.get("BOT_TOKEN", "")
 
 # The Telegram API things
-API_ID = int(os.environ.get("APP_ID", 12345))
-API_HASH = os.environ.get("API_HASH")
+API_ID = config("API_ID")
+API_HASH = config("API_HASH")
 # Get these values from my.telegram.org
 
 # Your ID, Or Channel/Group ID :
-ID = int(os.environ.get("ID", 12345))
+ID = config("ID", cast=int)
 
-HEROKU_APP_NAME = os.environ.get("HEROKU_APP_NAME", None)
-HEROKU_API_KEY = os.environ.get("HEROKU_API_KEY", None)
+HEROKU_APP_NAME = config("HEROKU_APP_NAME")
+HEROKU_API_KEY = config("HEROKU_API_KEY")
 
 
 Alty = Client("Alty-Logs", bot_token=BOT_TOKEN, api_id=API_ID, api_hash=API_HASH)
