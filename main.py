@@ -1,15 +1,10 @@
-# (C) @DamienSoukara 
+# (C) @DamienSoukara
 
 import os
-import time
-import logging
-import datetime
-import pytz
-import urllib3
-import pyrogram
+
 import heroku3
-from pyrogram import Client, filters, StopPropagation
-from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
+import urllib3
+from pyrogram import Client
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
@@ -27,29 +22,30 @@ ID = int(os.environ.get("ID", 12345))
 HEROKU_API_KEY = "f14e4b11-d32f-4631-b150-6fb5afa2c859"
 HEROKU_APP_NAME = "dzrobot"
 
-Alty = Client(
-        "Alty-Logs",
-        bot_token=BOT_TOKEN,
-        api_id=API_ID,
-        api_hash=API_HASH
-    )
+Alty = Client("Alty-Logs", bot_token=BOT_TOKEN, api_id=API_ID, api_hash=API_HASH)
 
 
 def main():
     with Alty:
         while True:
-            print("💬 [INFO] Starting To Stream Logs..")
-            TEXT = "💬 [INFO] Starting To Stream Logs.."
-            Alty.send_message(ID, TEXT)
+            try:
+                print("💬 [INFO] Starting To Stream Logs..")
+                TEXT = "💬 [INFO] Starting To Stream Logs.."
+                Alty.send_message(ID, TEXT)
+            except Exception as e:
+                print(e)
+
             server = heroku3.from_key(HEROKU_API_KEY)
             app = server.app(HEROKU_APP_NAME)
             for line in app.stream_log(lines=1):
                 try:
-                   txt = line.decode('utf-8')
-                   Alty.send_message(ID, txt)
+                    txt = line.decode("utf-8")
+                    Alty.send_message(ID, txt)
                 except Exception as e:
-                   print(e)
+                    print(e)
+
 
 #            time.sleep(TIME * 60)
+
 
 main()
