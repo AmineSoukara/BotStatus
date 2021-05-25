@@ -1,10 +1,16 @@
 # (C) @DamienSoukara
 
 import os
-
+import logging
 import heroku3
 import urllib3
 from pyrogram import Client
+
+logging.basicConfig(level=logging.DEBUG,
+                    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+
+logging.getLogger("pyrogram").setLevel(logging.WARNING)
+
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
