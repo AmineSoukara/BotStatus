@@ -41,9 +41,13 @@ def main():
             for line in app.stream_log(lines=1):
                 try:
                     txt = line.decode("utf-8")
-                    F = re.split(":", txt)
-                    hm = F[4]
-                    done = "➕ " + hm.strip()
+                    F = re.split(']', txt)
+                    if len(F)>2: 
+                       hm = F[2]
+                       z = hm.strip()
+                    else:
+                       z = txt
+                    done = "➕ " + z
                     Alty.send_message(ID, done)
                 except Exception as e:
                     print(e)
