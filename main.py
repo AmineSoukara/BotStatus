@@ -1,16 +1,10 @@
 # (C) @DamienSoukara
 
 import os
-import logging
+import re
 import heroku3
 import urllib3
 from pyrogram import Client
-
-logging.basicConfig(level=logging.DEBUG,
-                    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-
-logging.getLogger("pyrogram").setLevel(logging.WARNING)
-
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
@@ -46,8 +40,11 @@ def main():
             app = server.app(HEROKU_APP_NAME)
             for line in app.stream_log(lines=1):
                 try:
-                    txt = "➕ " + line.decode("utf-8")
-                    Alty.send_message(ID, txt)
+                    txt = line.decode("utf-8")
+                    F = re.split(":", txt)
+                    hm = F[4]
+                    done = "➕ " + hm.strip()
+                    Alty.send_message(ID, done)
                 except Exception as e:
                     print(e)
 
