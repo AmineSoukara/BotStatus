@@ -49,7 +49,6 @@ async def start(c, m):
         disable_web_page_preview=True,
         reply_markup=START_BUTTONS
     )
-    raise StopPropagation
 
 def main():
     with Alty:
