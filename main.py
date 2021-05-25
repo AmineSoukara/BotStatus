@@ -19,8 +19,9 @@ API_HASH = os.environ.get("API_HASH")
 # Your ID, Or Channel/Group ID :
 ID = int(os.environ.get("ID", 12345))
 
-HEROKU_API_KEY = "f14e4b11-d32f-4631-b150-6fb5afa2c859"
-HEROKU_APP_NAME = "dzrobot"
+HEROKU_APP_NAME = os.environ.get("HEROKU_APP_NAME", None)
+HEROKU_API_KEY = os.environ.get("HEROKU_API_KEY", None)
+
 
 Alty = Client("Alty-Logs", bot_token=BOT_TOKEN, api_id=API_ID, api_hash=API_HASH)
 
