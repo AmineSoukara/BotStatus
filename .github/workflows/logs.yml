@@ -1,4 +1,7 @@
 name: ⚡️ Update Status. ⚡️
+on:
+  schedule:
+    - cron: "0 */1 * * *"
 
 jobs:
   update:
