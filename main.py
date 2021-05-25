@@ -44,8 +44,11 @@ def main():
             server = heroku3.from_key(HEROKU_API_KEY)
             app = server.app(HEROKU_APP_NAME)
             for line in app.stream_log(lines=1):
-                txt = line.decode('utf-8')
-                Alty.send_message(ID, txt)
+                try:
+                   txt = line.decode('utf-8')
+                   Alty.send_message(ID, txt)
+                except Exception as e:
+                   print(e)
 
 #            time.sleep(TIME * 60)
 
