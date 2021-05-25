@@ -2,6 +2,7 @@
 
 import os
 import time
+import logging
 import datetime
 import pytz
 import urllib3
@@ -9,6 +10,12 @@ import pyrogram
 import heroku3
 from pyrogram import Client, filters, StopPropagation
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
+
+logging.basicConfig(level=logging.DEBUG,
+                    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+logger = logging.getLogger(__name__)
+
+logging.getLogger("pyrogram").setLevel(logging.WARNING)
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
