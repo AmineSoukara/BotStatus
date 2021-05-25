@@ -49,13 +49,6 @@ START_BUTTONS = InlineKeyboardMarkup(
         ]]
     )
 
-@Alty.on_message(filters.private & filters.command(["start"]))
-async def start(c, m):
-    await m.reply_text(
-        text=START_TEXT.format(m.from_user.mention, HEROKU_APP_NAME),
-        disable_web_page_preview=True,
-        reply_markup=START_BUTTONS
-    )
 
 def main():
     with Alty:
@@ -70,6 +63,15 @@ def main():
                 Alty.send_message(OWNER_ID, txt)
 
 #            time.sleep(TIME * 60)
+
+@Alty.on_message(filters.private & filters.command(["start"]))
+async def start(c, m):
+    await m.reply_text(
+        text=START_TEXT.format(m.from_user.mention, HEROKU_APP_NAME),
+        disable_web_page_preview=True,
+        reply_markup=START_BUTTONS
+    )
+
 
 
 main()
