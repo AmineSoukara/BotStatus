@@ -30,9 +30,9 @@ Alty = Client("Alty-Logs", bot_token=BOT_TOKEN, api_id=API_ID, api_hash=API_HASH
 def main():
     with Alty:
         while True:
-            print("💬 [INFO] Starting To Stream Logs..")
-            TEXT = "💬 [INFO] Starting To Stream Logs.."
-            Alty.send_message(OWNER_ID, TEXT)
+            t = "💬 [INFO] Starting To Stream Logs..")
+            Alty.send_message(ID, t)
+            print(t)
 
             server = heroku3.from_key(HEROKU_API_KEY)
             app = server.app(HEROKU_APP_NAME)
