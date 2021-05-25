@@ -4,10 +4,13 @@ import os
 import time
 import datetime
 import pytz
+import urllib3
 import pyrogram
 import heroku3
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
+
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 # Api Strings From my.telegram.org
 API_ID = int(os.environ.get("API_ID"))
@@ -40,7 +43,8 @@ def main():
             server = heroku3.from_key(HEROKU_API_KEY)
             app = server.app(HEROKU_APP_NAME)
             for line in app.stream_log(lines=1):
-                Alty.send_message(OWNER_ID, line)
+                txt = line.decode('utf-8')
+                Alty.send_message(OWNER_ID, txt)
 
 #            time.sleep(TIME * 60)
 
