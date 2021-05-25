@@ -7,7 +7,7 @@ import pytz
 import urllib3
 import pyrogram
 import heroku3
-from pyrogram import Client, filters
+from pyrogram import Client, filters, StopPropagation
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
@@ -33,6 +33,23 @@ Alty = Client(
         api_id=API_ID,
         api_hash=API_HASH
     )
+
+START_TEXT = "Hello {} I'm Alive\n-App Name : {}"
+START_BUTTONS = InlineKeyboardMarkup(
+        [[
+        InlineKeyboardButton("Dev", url="https://t.me/AmineSoukara"),
+        InlineKeyboardButton("Source Code", url="https://github.com/AmineSoukara")
+        ]]
+    )
+
+@Alty.on_message(filters.private & filters.command(["start"]))
+async def start(c, m):
+    await m.reply_text(
+        text=START_TEXT.format(m.from_user.mention, HEROKU_APP_NAME),
+        disable_web_page_preview=True,
+        reply_markup=START_BUTTONS
+    )
+    raise StopPropagation
 
 def main():
     with Alty:
