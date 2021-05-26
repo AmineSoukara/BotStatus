@@ -1,3 +1,7 @@
+# (c) @AmineSoukara
+# This File Is A Part Of: https://github.com/AmineSoukara/Stream-HerokuLogs
+ 
+
 import os
 import re
 import heroku3
