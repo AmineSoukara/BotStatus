@@ -18,7 +18,15 @@ python3 main.py
 * `API_HASH` Your API Hash from my.telegram.org
 * `API_ID` Your API ID from my.telegram.org
 * `BOT_TOKEN` Your bot token from @BotFather
+* `ID` Your ID Or Channel ID
+###
+Go to https://dashboard.heroku.com/account, scroll down and press Reveal API
+* `HEROKU_APP_NAME` Your Heroku APP-NAME
+* `HEROKU_API_KEY` Your Heroku API-KEY
 ---
+## Note:
+Don't Run it In Your Main Account, Use Another Account, Bcz Dynos Will Gooo Brrrrrr
+
 ## Demo:
 <p align="center"><a href="#"><img src="https://i.imgur.com/tZ3aG2K.jpg" width="250"></a></p> 
 
