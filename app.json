@@ -1,7 +1,7 @@
 {
   "name": "Stream Heroku-Logs",
   "description": "A user bot for stat telegram bots online status",
-  "repository": "https://github.com/AmineSoukara/",
+  "repository": "https://github.com/AmineSoukara/Stream-HerokuLogs",
   "keywords": ["telegram", "heroku", "bot", "Logs"],
   "env": {
     "BOT_TOKEN": {
