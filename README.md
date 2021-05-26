@@ -4,12 +4,12 @@
 
 ## 👨‍💻 Deploy:
 ### -Easy Way
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/AmineSoukara//tree/main)
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/AmineSoukara/Stream-HerokuLogs/tree/main)
 
 ### -Normal Way
 ```python3
-git clone https://github.com/AmineSoukara/
-cd 
+git clone https://github.com/AmineSoukara/Stream-HerokuLogs
+cd Stream-HerokuLogs
 pip3 install -r requirements.txt
 # Don't Forget To Edit main.py
 python3 main.py
