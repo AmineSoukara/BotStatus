@@ -19,6 +19,14 @@ python3 main.py
 * `API_ID` Your API ID from my.telegram.org
 * `BOT_TOKEN` Your bot token from @BotFather
 ---
+## Demo:
+<p align="center"><a href="#"><img src="https://i.imgur.com/tZ3aG2K.jpg" width="250"></a></p> 
+
+
 ## Credits
-* [Github@Pyrogram](https://github.com/pyrogram/pyrogram)
+* Library : [Github@Pyrogram](https://github.com/pyrogram/pyrogram)
 * The IDEA Is Taken From : [Github@ChristyRoys](https://github.com/odysseusmax/bug-free-broccoli)
+* Damien-Soukara : [Github@Damien](https://github.com/AmineSoukara)
+## 
+<a href="https://t.me/DamienSoukara"><img src="https://img.shields.io/badge/Join-Telegram%20Channel-red.svg?logo=Telegram"></a>
+<a href="https://t.me/DamienHelp"><img src="https://img.shields.io/badge/Join-Telegram%20Group-blue.svg?logo=telegram"></a>
